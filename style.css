@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Stoke&display=swap');
+
+body{
+    background-color: rgb(39, 39, 39);
+    color: rgb(228, 228, 228);
+    font-family: Stoke;
+}
+
+.title{
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.header-decor{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.decor{
+    filter: invert(100%) sepia(1%) saturate(1605%) hue-rotate(98deg) brightness(118%) contrast(79%);
+    height: 80px;
+}
+
+.center-d{
+    transform: scaleX(1.4);
+}
+
+.side-d{
+    transform: scale(0.5);
+}
+
+
+.right-d{
+    transform: scale(-0.5, 0.5)
+}
