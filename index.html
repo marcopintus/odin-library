@@ -17,6 +17,36 @@
             <img class="decor side-d right-d" src="./icons/side_decor.svg">
         </div>
     </header>
+    <main class="books container">
+        <div class="table-header">
+            <p >Title</p>
+            <p >Author</p>
+            <p >Pages</p>
+            <p >Status</p>
+            <p >Remove</p>
+        </div>
+        <div class="book-table">
+
+        </div>
+        <button class="add-btn">+</button>
+        <div class="modal">
+            <form class="add-form" onsubmit="return false;">
+                <p>Insert book Title</p>
+                <input class="adder add-title" type="text" placeholder="Title">
+                <p>Insert book Author</p>
+                <input class="adder add-author" type="text" placeholder="Author">
+                <p>Insert book number of pages</p>
+                <input class="adder add-pages" type="number"  pattern="\d" placeholder="Number of pages"
+                min="0" max="999999">
+                <div class="read-it-check">
+                    <p>Have you read it yet?</p>
+                    <input class="add-read" type="checkbox" placeholder="Author">
+                </div>
+                <button class="submit-book" type="submit">Add Book</button>
+                
+            </form>
+        </div>
+    </main>
     
 </body>
 </html>
