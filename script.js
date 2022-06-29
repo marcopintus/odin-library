@@ -54,7 +54,7 @@ function submitBook(){
     let wrtnCheck = document.querySelector(".add-read").checked;
     let newBk = new Book(wrtnTitle,wrtnAuthor,wrtnPages,wrtnCheck)
     let check = checkSame(newBk);
-    if (check == false) {
+    if (check == false && newBk.name != '' && newBk.name != " " ) {
         addBookToLibrary(newBk)
         wipeLibrary()
         writeLibrary()
