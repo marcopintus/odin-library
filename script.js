@@ -96,7 +96,7 @@ function cCModal(){
 }
 
 function checkSame(newBook){
-    return myLibrary.some(book => book.name == newBook.name)
+    return myLibrary.some(book => book.name == newBook.name && book.author == newBook.author)
 }
 
 
