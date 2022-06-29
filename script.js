@@ -59,7 +59,9 @@ function submitBook(){
         wipeLibrary()
         writeLibrary()
         cCModal()
-    }    
+    } else {
+        cCModal()
+    }   
 }
 
 function writeLibrary() {
@@ -94,7 +96,7 @@ function cCModal(){
 }
 
 function checkSame(newBook){
-    return myLibrary.some(book => book == newBook)
+    return myLibrary.some(book => book.name == newBook.name)
 }
 
 
@@ -119,4 +121,3 @@ modal.addEventListener("click", (e) => {
         } 
 })
 
-// make it that it checks if the book already exists
