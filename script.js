@@ -1,16 +1,53 @@
-function Book(name,author,pages,read){
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = function () {
-        return `${this.name} was written by ${this.author}, has ${this.pages} and ${this.read == true? "has been read":"has not been read yet."}`
+class Library {
+    constructor() {
+        this.books = [];
+    }
+
+    addBookToLibrary(book) {
+        this.books.push(book);    
+    }
+
+    checkSame(newBook){
+        return this.books.some(book => book.name == newBook.name && book.author == newBook.author)
+    }
+
+    writeLibrary() {
+        for(let i =0; i<this.books.length; i++){
+            appendNewBook(this.books[i])
+        }
+        delBtn = document.querySelectorAll(".b-remove");
+        if (delBtn){
+            delBtn.forEach(button => {
+            button.addEventListener("click",
+                (e) =>{
+                    let bookId = document.getElementById(e.composedPath()[2].id);
+                    bookId.remove();
+                    this.books = this.books.filter(book => book.name != e.composedPath()[2].id)
+                    }
+            )
+            }
+        )
+        } 
+    }
+
+    wipeLibrary(){
+        booksContainer.textContent = '';
     }
 }
 
-function addBookToLibrary(book) {
-    myLibrary.push(book);    
-  }
+class Book {
+    constructor(name,author,pages,read){
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        }
+        info() {
+            return `${this.name} was written by ${this.author}, has ${this.pages} and ${this.read == true? "has been read":"has not been read yet."}`
+
+    }
+    
+}
 
 function appendNewBook(book){
     let newBook = document.createElement("div");
@@ -53,38 +90,15 @@ function submitBook(){
     let wrtnPages = document.querySelector(".add-pages").value;
     let wrtnCheck = document.querySelector(".add-read").checked;
     let newBk = new Book(wrtnTitle,wrtnAuthor,wrtnPages,wrtnCheck)
-    let check = checkSame(newBk);
+    let check = myLibrary.checkSame(newBk);
     if (check == false && newBk.name != '' && newBk.name != " " ) {
-        addBookToLibrary(newBk)
-        wipeLibrary()
-        writeLibrary()
+        myLibrary.addBookToLibrary(newBk)
+        myLibrary.wipeLibrary()
+        myLibrary.writeLibrary()
         cCModal()
     } else {
         cCModal()
     }   
-}
-
-function writeLibrary() {
-    for(i =0; i<myLibrary.length; i++){
-        appendNewBook(myLibrary[i])
-    }
-    delBtn = document.querySelectorAll(".b-remove");
-    if (delBtn){
-        delBtn.forEach(button => {
-        button.addEventListener("click",
-            (e) =>{
-                let bookId = document.getElementById(e.composedPath()[2].id);
-                bookId.remove();
-                myLibrary = myLibrary.filter(book => book.name != e.composedPath()[2].id)
-                }
-        )
-        }
-    )
-    } 
-}
-
-function wipeLibrary(){
-    booksContainer.textContent = '';
 }
 
 function cCModal(){
@@ -93,10 +107,6 @@ function cCModal(){
     document.querySelector(".add-pages").value = '';
     document.querySelector(".add-read").checked = false;
     modal.classList.remove("showing");
-}
-
-function checkSame(newBook){
-    return myLibrary.some(book => book.name == newBook.name && book.author == newBook.author)
 }
 
 
@@ -109,7 +119,7 @@ const modal = document.querySelector(".modal");
 const addBookButton = document.querySelector(".submit-book");
 const booksContainer = document.querySelector(".book-table");
 
-let myLibrary = [];
+let myLibrary = new Library();
 
 addBookButton.addEventListener("click",submitBook)
 addBtn.addEventListener("click",() => {
@@ -120,4 +130,3 @@ modal.addEventListener("click", (e) => {
             modal.classList.toggle("showing")
         } 
 })
-
